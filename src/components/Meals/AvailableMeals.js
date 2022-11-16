@@ -78,8 +78,6 @@ const AvailableMeals = () => {
       <Card>
         <ul>{meals.length > 0 && mealsList}</ul>
         {meals.length === 0 && <p>Sorry, no meals to display</p>}
-        {/* {!isLoading && meals.length === 0 && <p>Sorry, no meals to display</p>} */}
-        {/* {isLoading && <p>Loading</p>} */}
       </Card>
     </section>
   );
