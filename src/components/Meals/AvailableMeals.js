@@ -39,12 +39,10 @@ const AvailableMeals = () => {
     const fetchMeals = async () => {
       setIsLoading(true)
       const response = await fetch('https://http-project-134be-default-rtdb.firebaseio.com/meals.json');
-      console.log(response)
       if (!response.ok) {
         throw new Error('Something went wrong');
       }
       const responseData = await response.json();
-      console.log(responseData);
       const loadedMeals = [];
 
       for (const key in responseData) {
