@@ -33,14 +33,20 @@ import { useEffect, useState } from 'react';
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState([]);
-  console.log(meals.length)
+  const [httpError, setHttpError] = useState();
+
   useEffect(() => {
     const fetchMeals = async () => {
       setIsLoading(true)
-      const response = await fetch('https://http-project-134be-default-rtdb.firebaseio.com/meals.json');
+      const response = await fetch('https://http-project-134be-default-rtdb.firebasei.com/meals.json');
+      console.log(response)
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
       const responseData = await response.json();
       console.log(responseData);
-      const loadedMeals = []
+      const loadedMeals = [];
+
       for (const key in responseData) {
         loadedMeals.push({
           id: key,
@@ -50,15 +56,28 @@ const AvailableMeals = () => {
         })
       }
       setMeals(loadedMeals);
-      setIsLoading(false)
+      setIsLoading(false);
     }
-    fetchMeals();
+
+    fetchMeals().catch(error=>{
+      setIsLoading(false);
+
+      setHttpError(error.message)
+    })
   }, [])
 
   if (isLoading) {
     return (
       <section className={classes.MealsLoading}>
         <p>Loading...</p>
+      </section>
+    )
+  }
+
+  if (httpError) {
+    return (
+      <section className={classes.MealsError}>
+        <p>{httpError}</p>
       </section>
     )
   }
