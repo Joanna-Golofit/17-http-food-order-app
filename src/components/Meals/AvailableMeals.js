@@ -38,7 +38,7 @@ const AvailableMeals = () => {
   useEffect(() => {
     const fetchMeals = async () => {
       setIsLoading(true)
-      const response = await fetch('https://http-project-134be-default-rtdb.firebasei.com/meals.json');
+      const response = await fetch('https://http-project-134be-default-rtdb.firebaseio.com/meals.json');
       console.log(response)
       if (!response.ok) {
         throw new Error('Something went wrong');
