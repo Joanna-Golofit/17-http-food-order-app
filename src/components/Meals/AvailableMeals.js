@@ -32,9 +32,11 @@ import { useEffect, useState } from 'react';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState([]);
   console.log(meals.length)
   useEffect(() => {
     const fetchMeals = async () => {
+      setIsLoading(true)
       const response = await fetch('https://http-project-134be-default-rtdb.firebaseio.com/meals.json');
       const responseData = await response.json();
       console.log(responseData);
@@ -48,10 +50,18 @@ const AvailableMeals = () => {
         })
       }
       setMeals(loadedMeals);
-
+      setIsLoading(false)
     }
     fetchMeals();
   }, [])
+
+  if (isLoading) {
+    return (
+      <section className={classes.MealsLoading}>
+        <p>Loading...</p>
+      </section>
+    )
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
@@ -68,6 +78,8 @@ const AvailableMeals = () => {
       <Card>
         <ul>{meals.length > 0 && mealsList}</ul>
         {meals.length === 0 && <p>Sorry, no meals to display</p>}
+        {/* {!isLoading && meals.length === 0 && <p>Sorry, no meals to display</p>} */}
+        {/* {isLoading && <p>Loading</p>} */}
       </Card>
     </section>
   );
