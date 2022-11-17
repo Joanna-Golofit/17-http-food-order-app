@@ -34,7 +34,7 @@ const Cart = (props) => {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
-        orderedItems:cartCtx.items
+        orderedItems: cartCtx.items
       })
     })
     setIsSubmitting(false);
@@ -73,16 +73,24 @@ const Cart = (props) => {
       {isCheckout && <Checkout onConfirm={submitOrderHandler} onClose={props.onClose} />}
       {!isCheckout && modalActions}
     </>;
-  
-  const confirmationContent = <p>sent!</p>
-  const sendingContent = <p>sending.....</p>
+
+  const sentContent =
+    <>
+      <p>Your order has been successfully sent!</p>
+      <div className={classes.actions}>
+        <button className={classes.button} onClick={props.onClose}>
+          Close
+        </button>
+      </div>
+    </>
+  const sendingContent = <p>Sending the data.....</p>
 
 
   return (
     <Modal onClose={props.onClose}>
       {!didSubmit && !isSubmitting && cartModalContent}
       {!didSubmit && isSubmitting && sendingContent}
-      {didSubmit && confirmationContent}
+      {didSubmit && sentContent}
     </Modal>
   );
 };
