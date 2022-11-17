@@ -3,8 +3,8 @@ import { useReducer } from 'react';
 import CartContext from './cart-context';
 
 const defaultCartState = {
-  items: [],
-  totalAmount: 0,
+  items: [{ id: 'm1', name: 'Schnitzel', amount: 1, price: 16.5 }],
+  totalAmount: 1,
 };
 
 const cartReducer = (state, action) => {

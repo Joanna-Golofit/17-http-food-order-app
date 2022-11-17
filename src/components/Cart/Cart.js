@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
@@ -7,6 +7,7 @@ import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
 
 const Cart = (props) => {
+
   const [isCheckout, setIsCheckout] = useState(false)
   const cartCtx = useContext(CartContext);
 
