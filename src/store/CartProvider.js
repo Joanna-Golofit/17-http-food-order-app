@@ -59,6 +59,7 @@ const cartReducer = (state, action) => {
       items: [],
       totalAmount: 0,
     };
+    // lub return defaultCartState - gdyby tam byly zera ;p
   }
 
   return defaultCartState;
