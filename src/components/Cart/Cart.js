@@ -25,7 +25,7 @@ const Cart = (props) => {
   };
 
   const cartClearHandler = () => {
-    cartCtx.clear();
+    cartCtx.clearCart();
   };
 
   const orderHandler = () => {

@@ -79,7 +79,7 @@ const CartProvider = (props) => {
     dispatchCartAction({ type: 'REMOVE', id: id });
   };
 
-  const clearItemFromCartHandler = () => {
+  const clearCartHandler = () => {
     dispatchCartAction({ type: 'CLEAR' });
   };
 
@@ -88,7 +88,7 @@ const CartProvider = (props) => {
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
-    clear: clearItemFromCartHandler,
+    clearCart: clearCartHandler,
   };
 
   return (
