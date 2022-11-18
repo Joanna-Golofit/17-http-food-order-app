@@ -24,6 +24,10 @@ const Cart = (props) => {
     cartCtx.addItem(item);
   };
 
+  const cartClearHandler = () => {
+    cartCtx.clear();
+  };
+
   const orderHandler = () => {
     setIsCheckout(true)
   }
@@ -39,6 +43,7 @@ const Cart = (props) => {
     })
     setIsSubmitting(false);
     setDidSubmit(true);
+    cartClearHandler();
   }
 
   const cartItems = (
